@@ -1,0 +1,64 @@
+version: '2'
+services:
+  server_user:
+    user: root
+    build:
+      context: ./server/user
+    ports:
+     - "4002:4000"
+    depends_on:
+     - database
+     - redis
+    links:
+     - database
+     - redis
+    volumes:
+      - "./server/user:/usr/src/app"
+    environment:
+      DB_DIALECT: mysql
+      DB_NAME: project
+      DB_USER: root
+      DB_PASSWORD: project
+      DB_PORT: 3306
+      ENABLE_REQUEST_LOG: 1
+      DATABASE_URL:
+      DB_HOST: 'database'
+      DB_PROTOCOL: mysql
+  server_auth:
+    user: root
+    build:
+      context: ./server/auth
+    ports:
+     - "4001:4000"
+    depends_on:
+     - database
+     - redis
+    links:
+     - database
+     - redis
+    volumes:
+      - "./server/auth:/usr/src/app"
+    environment:
+      DB_DIALECT: mysql
+      DB_NAME: project
+      DB_USER: root
+      DB_PASSWORD: project
+      DB_PORT: 3306
+      ENABLE_REQUEST_LOG: 1
+      DATABASE_URL:
+      DB_HOST: 'database'
+      DB_PROTOCOL: mysql
+  redis:
+    image: redis
+  database:
+    ports:
+     - "3306:3306"
+    image: mysql:5.7
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: project
+      MYSQL_DATABASE: project
+      MYSQL_USER: project
+      MYSQL_PASSWORD: project
