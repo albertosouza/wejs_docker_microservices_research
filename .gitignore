@@ -3,3 +3,4 @@ node_modules
 */files/upload
 */node_modules
 *.sql
+*.local.js

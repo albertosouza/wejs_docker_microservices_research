@@ -1,7 +1,10 @@
 # Microservices implementation with We.js
 
-# Services
+# TEST ONLY! - IN DEVELOPMENT
 
+## Services
+
+```
 - client
 - - app (main app)
 - server
@@ -12,3 +15,4 @@
 
 configurations.json
 README.md
+```
