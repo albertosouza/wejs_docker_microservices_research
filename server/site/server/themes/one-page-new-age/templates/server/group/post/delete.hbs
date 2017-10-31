@@ -1,0 +1,16 @@
+<div class="row group-posts">
+  <div class="col-md-8 col-lg-9">
+    <div class="text-center">
+      <h1>Deletar post #{{data.id}}</h1>
+      <p>{{{t deleteMsg}}}</p>
+      <form method="post">
+        <a class="btn btn-default" href="{{redirectTo}}">Voltar</a>
+        <button class="btn btn-danger">{{t 'Delete'}}</button>
+        <input name="redirectTo" type="hidden" value="{{redirectTo}}">
+      </form>
+    </div>
+  </div>
+  <div class="col-md-4 col-lg-3">
+    {{template 'group/sidebar' locals=this}}
+  </div>
+</div>

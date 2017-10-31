@@ -1,0 +1,63 @@
+@import 'theme.css';
+@import 'menu.css';
+@import 'images.css';
+@import 'content.css';
+@import 'login-form.css';
+@import 'bootstrap-loagind.css';
+@import 'tags.css';
+
+.navbar-default {
+  margin-bottom: 0px;
+}
+
+nav.navbar.navbar-default > .container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 0px;
+}
+
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+.nav-tabs {
+  margin-bottom: 0;
+}
+
+.navbar-user-avatar {
+  width: 27px;
+  margin-top: -9px;
+  margin-bottom: -5px;
+  margin-right: 5px;
+}
+
+#page-wrapper {
+  padding-bottom: 20px;
+}
+
+.navbar-brand > img {
+  width: 40px;
+  text-align: left;
+  margin-top: -10px;
+  margin-right: 5px;
+  display: inline;
+}
+
+.help-block {
+  font-size: 0.8em;
+}
+
+.system-settings-sidebar table,
+table.image-uploader-table {
+  margin-bottom: 5px;
+}
+
+.models-table-wrapper input {
+  padding: 6px 4px;
+}

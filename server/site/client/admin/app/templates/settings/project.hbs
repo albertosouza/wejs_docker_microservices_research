@@ -1,0 +1,60 @@
+<h1 class="page-header">Dados do hotel</h1>
+
+{{settings-menu}}
+
+<form {{action "save" model.settings on="submit"}}>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Dados do hotel:</div>
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>Telefone de contato 1*:</label>
+              {{input name="sitePhone1" value=model.settings.sitePhone1 class="form-control" placeholder="Ex: 011 21 1234-5678"}}
+              <p class="help-block">O telefone principal de contato com o hotel.</p>
+            </div>
+            <div class="form-group">
+              <label>Telefone de contato 2:</label>
+              {{input name="sitePhone2" value=model.settings.sitePhone2 class="form-control" placeholder="Ex: 011 21 2345-6789"}}
+              <p class="help-block">Um segundo telefone de contato com o hotel.</p>
+            </div>
+
+            <div class="form-group">
+              <label>Email de contato 1*:</label>
+              {{input name="siteEmail1" value=model.settings.siteEmail1 class="form-control" placeholder="Ex: contato@hotel.com.br"}}
+              <p class="help-block">Email principal de contato com o site.</p>
+            </div>
+            <div class="form-group">
+              <label>Email de contato 2:</label>
+              {{input name="siteEmail2" value=model.settings.siteEmail2 class="form-control" placeholder="Ex: contato2@hotel.com.br"}}
+              <p class="help-block">Email secundário de contato com o site.</p>
+            </div>
+
+            <div class="form-group">
+              <label>Horário de atendimento:</label>
+              {{input name="siteDaysOfService" value=model.settings.siteDaysOfService class="form-control" placeholder="Ex: De segunda à sexta feira das 09:00hs as 18:00hs"}}
+              <p class="help-block">Dias e horários de atendimeno para contatos por telefone, email e(ou) presencial.</p>
+            </div>
+
+            <div class="form-group">
+              <label>Endereço:</label>
+              {{input name="siteAddress" value=model.settings.siteAddress class="form-control" placeholder="Ex: Rua Itaberaba - Vila Maria Helena, Duque de Caxias - RJ"}}
+              <p class="help-block">Endereço principal do hotel.</p>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          Salvar
+        </button>
+      </div>
+    </div>
+
+    <div class="col-md-4 system-settings-sidebar">
+    </div>
+  </div>
+</form>

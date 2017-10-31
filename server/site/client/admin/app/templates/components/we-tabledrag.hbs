@@ -1,0 +1,37 @@
+<form class="{{tableDragId}}">
+<table id="{{tableDragId}}" class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th we-model-attr="name">text</th>
+      <th we-model-attr="weight">weight</th>
+      <th we-model-attr="parent">parent</th>
+      <th we-model-attr="actions">actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each links as |link|}}
+      <tr id="tabledrad-item-{{link.id}}" class="draggable">
+        <td> {{link.identation}}
+          {{link.text}} [id:{{link.id}}]
+          <input class="id" name="link-{{link.id}}-id" value="{{link.id}}" type="hidden" />
+          <input class="row-depth" name="link-{{link.id}}-depth" value="{{link.depth}}" type="hidden" />
+        </td>
+        <td>
+          <input class="row-weight" name="link-{{link.id}}-weight" type="text" value="{{link.weight}}">
+        </td>
+        <td>
+          <input class="row-parent" name="link-{{link.id}}-parent" type="text" value="{{link.parent}}">
+        </td>
+        <td>
+          {{#link-to 'menus.item.edit-link' link.menu.id link.id class="btn btn-sm btn-default"}}
+            <i class="glyphicon glyphicon-pencil text-primary"></i> {{t 'Edit'}}
+          {{/link-to}}
+          <button class="btn btn-sm btn-default" {{action 'deleteLink' link links}}>
+            <i class="glyphicon glyphicon-remove text-danger"></i> {{t 'Delete'}}
+          </button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+</form>

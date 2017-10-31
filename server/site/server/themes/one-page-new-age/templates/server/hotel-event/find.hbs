@@ -1,0 +1,24 @@
+<ol class="breadcrumb">
+  <li><a href="/">Início</a></li>
+  <li class="active">Eventos</li>
+</ol>
+
+<h1>Eventos</h1>
+
+<div class="row hotel-rooms">
+  {{#if data.length}}
+    <div class="col-md-12">
+      {{#each data}}
+        {{render-record-teaser modelName='hotel-event' record=this locals=..}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="col-md-12">
+      <p class="contents-empty">Nenhum evento foi encontrado para essa lista.</p>
+    </div>
+  {{/if}}
+
+  <div class="col-md-12">
+    {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+  </div>
+</div>

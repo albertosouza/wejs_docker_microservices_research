@@ -1,0 +1,79 @@
+<table class="table table-bordered image-uploader-table">
+  <tbody>
+  {{#each value as |image|}}
+    <tr>
+      <td class="image-table-thumbnail">
+        {{we-image file=image size='thumbnail'}}
+      </td>
+      <td class="image-table-description">
+        {{image.description}}
+      </td>
+      <td class="image-table-actions">
+        <button class="btn btn-sm btn-default" {{action 'removeImage' image}}>
+          <i class="glyphicon glyphicon-remove text-danger"></i> {{t 'image.remove'}}
+        </button>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+  {{#if canAddMore}}
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <button class="btn btn-sm btn-default" {{action 'openImageUploader'}}>
+            <i class="glyphicon glyphicon-plus"></i> {{t 'image.Add'}}
+          </button>
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+</table>
+
+{{#bs-modal
+  open=uploadingImage
+  onSubmit=(action "upload")
+  onHidden=(action "onHideUploadModal")
+    as |modal|
+}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      <i class="glyphicon glyphicon-picture"></i> {{t 'image.selector'}}
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{#if uploader}}
+      {{#if uploader.isUploading}}
+        {{#bs-progress as |p|}}
+          {{p.bar value=percent minValue=0 maxValue=100 roundDigits=percent showLabel=true animate=true type="success" striped=true}}
+        {{/bs-progress}}
+      {{else}}
+        <div class="row">
+          <div class="col-md-2">
+            <img src={{previewImageSrc}} class="content-image preview"/>
+          </div>
+          <div class="col-md-10">
+            {{textarea value=description class="form-control"}}
+
+          </div>
+        </div>
+      {{/if}}
+    {{else}}
+      {{image-upload
+        uploader=uploader
+        url=url
+        progress='progress'
+        didUpload='didUpload'
+        didError='didError'
+        selected='selected'
+      }}
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer as |footer|}}
+    {{#bs-button onClick=(action modal.close) type="default"}}
+      {{t 'Cancel'}}
+    {{/bs-button}}
+    {{#bs-button onClick=(action modal.submit) type="primary"}}
+      {{t 'image.Add'}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

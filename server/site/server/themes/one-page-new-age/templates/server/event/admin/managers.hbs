@@ -1,0 +1,37 @@
+{{form 'event-managers-add' '' validationError}}
+
+<hr>
+
+<h4>{{t 'managers.salved'}}</h4>
+<table class="table table-sriped table-hover">
+<thead>
+    <tr>
+      <td>ID</td>
+      <td>{{t 'displayName'}}</td>
+      <td>{{t 'email'}}</td>
+      <td>{{t 'actions'}}</td>
+    </tr>
+</thead>
+<tbody>
+  {{#each event.managers}}
+    <tr>
+      <td>{{id}}</td>
+      <td>{{displayName}}</td>
+      <td>{{email}}</td>
+      <td>
+        <form method="POST">
+          <input type="hidden" name="idToRemove" value="{{id}}">
+          <button class="btn btn-default">{{t 'remove'}}</button>
+        </form>
+      </td>
+    </tr>
+  {{else}}
+    {{t 'event.admin.managers.empty'}}
+  {{/each}}
+</tbody>
+<tfoot>
+  <tr>
+    <td colspan="4"><button type="submit" class="btn btn-primary">{{t 'save'}}</button></td>
+  </tr>
+</tfoot>
+</table>

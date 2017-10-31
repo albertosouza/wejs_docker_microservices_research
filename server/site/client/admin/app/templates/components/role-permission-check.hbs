@@ -1,0 +1,9 @@
+{{#if isLoading}}
+  <i class="fa fa-spinner" aria-hidden="true"></i>
+{{else}}
+  {{#if can}}
+    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+  {{else}}
+    <i class="fa fa-square-o" aria-hidden="true"></i>
+  {{/if}}
+{{/if}}

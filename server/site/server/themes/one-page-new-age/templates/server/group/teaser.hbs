@@ -1,0 +1,21 @@
+<div class="group-teaser group-{{record.privacity}}">
+  <div class="group-name">
+    <h3>{{#link-to 'group.findOne' record.id}}{{record.name}}{{/link-to}}</h3>
+  </div>
+  <div class="group-content">
+    {{#link-to 'group.findOne' record.id class="group-teaser-link"}}
+      {{we-image record.logo "thumbnail" class="img-thumbnail logo"}}
+    {{/link-to}}
+    <p class="group-teaser-description">{{we-strip-tags text=record.description maxLength=300}}</p>
+  </div>
+  <div class="group-metadata">
+    {{t record.privacity}},
+    {{record.meta.membersCount}} {{t 'group.members'}}
+  </div>
+  <div class="group-actions">
+    {{{group-membership-btn groupId=record.id privacity=record.privacity membership=record.members locals=locals}}}
+    {{we-action-view-btn 'group' record locals.req record.id}}
+    {{we-action-edit-btn 'group'  record locals.req record.id}}
+    {{we-action-delete-btn 'group' record locals.req record.id}}
+  </div>
+</div>

@@ -1,0 +1,17 @@
+{{#if highlighted}}
+<form class="post-unhighlight-form" action="/group/{{groupId}}/post/{{postId}}/edit" method="post">
+  <input name="redirectTo" type="hidden" value="{{locals.req.url}}">
+  <input name="highlighted" type="hidden" value="false">
+  <div class="input-group">
+    <button class="btn btn-sm btn-default">{{t 'post.unhighlight'}}</button>
+  </div>
+</form>
+{{else}}
+<form class="post-highlight-form" action="/group/{{groupId}}/post/{{postId}}/edit" method="post">
+  <input name="redirectTo" type="hidden" value="{{locals.req.url}}">
+  <input name="highlighted" type="hidden" value="true">
+  <div class="input-group">
+    <button class="btn btn-sm btn-default">{{t 'post.highlight'}}</button>
+  </div>
+</form>
+{{/if}}

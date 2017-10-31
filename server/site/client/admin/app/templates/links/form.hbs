@@ -1,0 +1,50 @@
+<form {{action "saveLink" model.record modal on="submit"}}>
+  <fieldset>
+    <div class="form-group">
+      <label>{{t 'form-link-text'}}*:</label>
+      {{input value=model.record.text class="form-control" placeholder=(t 'form-placeholder-link-text') required="required"}}
+      <p class="help-block">Texto do link, o texto que aparece para o usuário.</p>
+    </div>
+    <div class="form-group">
+      <label>{{t 'form-link-href'}}*:</label>
+      {{input value=model.record.href class="form-control" placeholder=(t 'form-placeholder-link-href') required="required"}}
+      <p class="help-block">URL para onde o usuário irá apois clicar.</p>
+    </div>
+
+    {{#bs-accordion as |acc|}}
+      {{#acc.item value="1" title="Campos avançados"}}
+        <div class="form-group">
+          <label>{{t 'form-link-target'}}:</label>
+          {{input value=model.record.target class="form-control" placeholder=(t 'form-placeholder-link-href')}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-link-class'}}:</label>
+          {{input value=model.record.class class="form-control" placeholder=(t 'form-placeholder-link-class')}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-link-title'}}:</label>
+          {{input value=model.record.title class="form-control" placeholder=(t 'form-placeholder-link-title')}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-link-rel'}}:</label>
+          {{input value=model.record.rel class="form-control" placeholder=(t 'form-placeholder-link-rel')}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-link-key'}}</label>
+          {{input value=model.record.key class="form-control" placeholder=(t 'form-placeholder-link-key')}}
+        </div>
+      {{/acc.item}}
+
+    {{/bs-accordion}}
+
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">{{t 'Save'}}</button>
+
+      {{#link-to 'menus.item' model.menuId class="btn btn-default"}}
+        {{t 'Cancel'}}
+      {{/link-to}}
+    </div>
+
+  </fieldset>
+</form>

@@ -1,0 +1,46 @@
+<h1 class="page-header">Integrações</h1>
+
+{{settings-menu}}
+
+<form {{action "save" model.settings on="submit"}}>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-google" aria-hidden="true"></i> Google analytics:</div>
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>ID de acompanhamento:</label>
+              {{input value=model.settings.googleAnalyticsID name="googleAnalyticsID" class="form-control" placeholder="Digite o id aqui..."}}
+              <p class="help-block">O ID de acompanhamento pego no site do google analytics. Ex: UA-00000000-0.</p>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading"><i class="fa fa-map" aria-hidden="true"></i> Google maps:</div>
+        <div class="panel-body">
+          <fieldset>
+            <div class="form-group">
+              <label>API Key:</label>
+              {{input value=model.settings.googleMapsKey name="googleMapsKey" class="form-control" placeholder="Ex: AIzaSyDa_THpEmCgLPCOKDIj-q7IRTkyIku99TE"}}
+              <p class="help-block">Google maps API key get in google maps console, link: https://developers.google.com/maps/documentation/embed/guide?hl=pt-br.</p>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

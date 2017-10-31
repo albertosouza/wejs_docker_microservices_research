@@ -1,0 +1,90 @@
+<div id="post-teaser-{{record.id}}" class="post-teaser {{#if record.highlighted}}highlighted{{/if}} post-{{record.objectType}}" data-we-model="post" data-we-modelId="{{record.id}}">
+  <div class="post-header">
+    <div class="post-creator">
+      {{#link-to 'user.findOne' record.creatorId}}
+      {{we-avatar id=record.creatorId style='thumbnail' width="25px" height="25px"}}
+      <strong>{{record.creator.displayName}}</strong>
+      {{/link-to}}
+      <small>@{{record.creator.username}}</small>
+      - <span class="post-date">{{we-time-ago record.createdAt locals=locals}}</span>
+
+      {{#if record.group}}
+        - <span class="group">
+          {{#link-to 'group.findOne' record.groupId}}
+            {{record.group.name}}
+          {{/link-to}}
+        </span>
+      {{/if}}
+
+      {{#if record.category}}
+        <br>
+        <span>
+          {{t 'post.category.label'}}:
+          {{#each record.category}}
+            <em>{{this}}</em>
+          {{/each}}
+        </span>
+      {{/if}}
+    </div>
+  </div>
+  {{#if record.title}}
+    <div class="post-title"><h3>{{record.title}}</h3></div>
+  {{/if}}
+  <div class="post-body">{{{record.body}}}</div>
+
+  {{#if record.images}}
+  <div class="post-images">
+    {{#ifCond record.images.length 1}}
+      {{#each record.images}}
+        {{we-image-fancybox this 'medium'}}
+      {{/each}}
+    {{else}}
+      {{we-fancybox-galery images=record.images id=record.id style="medium"}}
+    {{/ifCond}}
+  </div>
+  <script>$(function(){ $("#post-teaser-{{record.id}} > .post-images > a").fancybox(); });</script>
+  {{/if}}
+
+  {{#if record.attachment}}
+    <br>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>{{t 'name'}}</th>
+          <th>{{t 'actions'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each record.attachment}}
+          <tr>
+            <td>{{originalname}}</td>
+            <td>
+              <a class="btn btn-default btn-sm" href="{{urls.original}}">{{t 'download'}}</a>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
+
+  <div class="post-footer">
+    <div class="post-actions">
+      {{{flag-like modelName='post' modelId=record.id isFlagged=record.metadata.isFlagged count=record.metadata.flagCount locals=locals}}}
+
+      {{{flag-follow modelName='post' modelId=record.id isFollowing=record.metadata.isFollowing locals=locals }}}
+
+      {{#if record.groupId}}
+        {{{post-highlight-btn postId=record.id highlighted=record.highlighted groupId=locals.group.id locals=locals}}}
+        {{we-action-view-btn 'group.post' record locals.req record.groupId record.id}}
+        {{we-action-edit-btn 'group.post' record locals.req record.groupId record.id}}
+        {{we-action-delete-btn 'group.post' record locals.req record.groupId record.id}}
+      {{else}}
+        {{we-action-view-btn 'post' record locals.req record.id}}
+        {{we-action-edit-btn 'post'  record locals.req record.id}}
+        {{we-action-delete-btn 'post' record locals.req record.id}}
+      {{/if}}
+    </div>
+  </div>
+
+  {{{comments modelName="post" modelId=record.id comments=record.metadata.comments count=record.metadata.commentsCount locals=locals}}}
+</div>

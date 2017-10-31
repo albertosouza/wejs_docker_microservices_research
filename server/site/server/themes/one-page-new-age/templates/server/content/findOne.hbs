@@ -1,0 +1,102 @@
+<div class="row content-view-record">
+
+  <!-- Blog Post Content Column -->
+  <div class="col-lg-8">
+
+    <!-- Blog Post -->
+
+    <!-- Title -->
+    <h1>{{data.title}}
+      {{#can permission='update_content' roleNames=req.userRoleNames}}
+        <a href="/admin/#/contents/{{data.id}}" class="btn btn-default">Editar</a>
+      {{/can}}
+    </h1>
+
+    <!-- Date/Time -->
+    <p class="content-publication-data">
+      <small>
+        <span class="glyphicon glyphicon-time"></span> Postado em {{we-date data.publishedAt "LL" locals=this}}
+        {{#if data.category.length}}- {{#each data.category}}{{this}}{{/each}}{{/if}}
+      </small>
+    </p>
+
+    {{#if data.featuredImage}}
+      <!-- Preview Image -->
+      {{we-image data.featuredImage "banner" class="img-responsive"}}
+    {{/if}}
+
+    <!-- Post Content -->
+    <div class="content-body">{{{data.body}}}</div>
+
+    {{#if data.allowComments}}
+      <hr>
+
+      <div class="content-comments">
+        <!-- Blog Comments -->
+        {{{comments modelName="content" modelId=data.id comments=data.metadata.comments count=data.metadata.commentCount locals=this}}}
+      </div>
+    {{/if}}
+
+  </div>
+
+  <!-- Blog Sidebar Widgets Column -->
+  <div class="col-md-4">
+
+    <!-- Blog Search Well -->
+    <div class="well">
+      <h4>Buscar conteúdo</h4>
+      <form action="/content">
+        <div class="input-group">
+          <input type="text" name="title_contains" class="form-control">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit">
+              <span class="glyphicon glyphicon-search"></span>
+          </button>
+          </span>
+        </div>
+        <!-- /.input-group -->
+      </form>
+    </div>
+
+    {{#if data.tags.length}}
+      <!-- Blog Categories Well -->
+      <div class="well">
+        <h4>Tags</h4>
+        <div class="row">
+          <div class="col-lg-6">
+            {{we-terms data.tags vocabularyName="Tags"}}
+          </div>
+        </div>
+        <!-- /.row -->
+      </div>
+    {{/if}}
+
+    {{#if data.images.length}}
+      <div class="well content-image-galery-sidebar">
+        <h4>Galeria de imagens</h4>
+        <hr>
+        {{!-- image galery --}}
+        {{we-fancybox-galery images=data.images id="postImageGalery" style="large"}}
+      </div>
+    {{/if}}
+
+    {{#if data.attachment.length}}
+    <div class="well">
+      <h4>Arquivos</h4>
+      {{!-- files list galery --}}
+      {{#each data.attachment}}
+        <a href="{{urls.original}}" download><i class="fa fa-download" aria-hidden="true"></i> {{originalname}}</a>
+      {{/each}}
+    </div>
+    {{/if}}
+
+    <!-- Side Widget Well -->
+{{!--       <div class="well">
+      <h4>Side Widget Well</h4>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+    </div>
+--}}
+  </div>
+
+</div>
+<!-- /.row -->

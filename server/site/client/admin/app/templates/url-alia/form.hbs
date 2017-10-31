@@ -1,0 +1,30 @@
+{{#if model.record.id}}
+<h1 class="page-header">
+  {{t 'urlAlias.create' target=model.record.target}}
+</h1>
+{{else}}
+<h1 class="page-header">{{t 'urlAlias.create'}}</h1>
+{{/if}}
+
+<form {{action "save" model.record on="submit"}}>
+  <fieldset>
+    <div class="form-group">
+      <label>{{t 'form-urlAlias-alias'}}*:</label>
+      {{input value=model.record.alias class="form-control" placeholder=(t 'form-placeholder-urlAlias-alias') required="required"}}
+    </div>
+    <div class="form-group">
+      <label>{{t 'form-urlAlias-target'}}*:</label>
+      {{input value=model.record.target class="form-control" placeholder=(t 'form-placeholder-urlAlias-target') required="required"}}
+    </div>
+  </fieldset>
+  <div>
+    <button class="btn btn-primary">
+      <i class="fa fa-save"></i>
+      {{t 'Save'}}
+    </button>
+    <button {{action 'goTo' 'url-alia.index'}} type="button" class="btn btn-default">
+      <i class="fa fa-step-backward"></i>
+      {{t 'urlAlias.find'}}
+    </button>
+  </div>
+</form>

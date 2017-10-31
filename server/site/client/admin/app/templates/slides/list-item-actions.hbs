@@ -1,0 +1,21 @@
+{{#link-to 'slides.item' record.id class="btn btn-default btn-sm"}}
+  <i class="glyphicon glyphicon-pencil text-success"></i>
+  Editar
+{{/link-to}}
+
+{{#if record.published}}
+  <button {{action 'changePublishedStatus' record false}} type="button" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-unchecked text-danger"></i>
+    Despublicar
+  </button>
+{{else}}
+  <button {{action 'changePublishedStatus' record true}} type="button" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-check text-success"></i>
+    Publicar
+  </button>
+{{/if}}
+
+<button {{action 'deleteRecord' record}} type="button" class="btn btn-default btn-sm">
+  <i class="glyphicon glyphicon-remove text-danger"></i>
+  {{t 'Delete'}}
+</button>

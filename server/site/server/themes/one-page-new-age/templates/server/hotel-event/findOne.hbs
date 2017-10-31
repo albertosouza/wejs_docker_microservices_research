@@ -1,0 +1,125 @@
+<ol class="breadcrumb">
+  <li><a href="/">Início</a></li>
+  <li><a href="/hotel-event">Eventos</a></li>
+  <li class="active">{{we-strip-tags text=data.name maxLength=40}}</li>
+</ol>
+
+<div class="row hotel-event-view-record">
+  <div class="col-lg-8">
+    {{#if data.featuredImage}}
+      <!-- Preview Image -->
+      {{we-image data.featuredImage "banner" class="img-responsive"}}
+    {{/if}}
+
+    <h1>{{data.name}}
+      {{#can permission='update_hotel-event' roleNames=req.userRoleNames}}
+        <a href="/admin/#/hotel-events/{{data.id}}" class="btn btn-default">Editar</a>
+      {{/can}}
+    </h1>
+
+    <!-- Post Content -->
+    <div class="content-body">{{{data.body}}}</div>
+
+    {{#if data.allowComments}}
+      <hr>
+
+      <div class="content-comments">
+        <!-- Blog Comments -->
+        {{{comments modelName="content" modelId=data.id comments=data.metadata.comments count=data.metadata.commentCount locals=this}}}
+      </div>
+    {{/if}}
+
+  </div>
+  <!-- Blog Sidebar Widgets Column -->
+  <div class="col-md-4">
+    <div class="sidebar-module">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Data do evento
+        </div>
+        <div class="panel-body">
+          <div class="hotel-event-dates">
+            <div class="hotel-event-date">
+               Início: <strong>{{we-date data.eventStartDate "DD/MM/YYYY HH\h\s" locals=this}}</strong>
+               <br>Fim: <strong>{{we-date data.eventEndDate "DD/MM/YYYY HH\h\s" locals=this}}</strong>
+            </div>
+          </div>
+       </div>
+      </div>
+    </div>
+
+    <div class="sidebar-module">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Inscrições
+        </div>
+        <div class="panel-body">
+          <div class="hotel-event-dates">
+            <div class="hotel-event-registrationDate">
+              Início: <strong>{{we-date data.registrationStartDate "DD/MM/YYYY HH:ss\h\s" locals=this}}</strong>
+              <br>Fim: <strong>{{we-date data.registrationEndDate "DD/MM/YYYY HH:ss\h\s" locals=this}}</strong>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          {{#ifCond data.registrationStatus 'closed_before'}}
+            <div class="registration-link">
+              <a href="{{data.registrationLink}}" class="btn btn-default disabled" target="_blank">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Em breve!</a>
+            </div>
+          {{/ifCond}}
+
+          {{#ifCond data.registrationStatus 'open'}}
+            <div class="registration-link">
+              <a href="{{data.registrationLink}}" class="btn btn-primary" target="_blank">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Inscrição</a>
+            </div>
+          {{/ifCond}}
+
+          {{#ifCond data.registrationStatus 'closed_after'}}
+            <div class="registration-link">
+              <a href="{{data.registrationLink}}" class="btn btn-default disabled" target="_blank">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Finalizada</a>
+            </div>
+          {{/ifCond}}
+
+        </div>
+      </div>
+    </div>
+
+    {{#if data.tags.length}}
+      <div class="sidebar-module">
+        <div class="panel panel-default">
+          <div class="panel-heading">Tags</div>
+          <div class="panel-body">
+            {{we-terms data.tags vocabularyName="Tags"}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if data.images.length}}
+      <div class="sidebar-module content-image-galery-sidebar">
+        <div class="panel panel-default">
+          <div class="panel-heading">Galeria de imagens</div>
+          <div class="panel-body">
+            {{we-fancybox-galery images=data.images id="postImageGalery" style="large"}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if data.attachment.length}}
+      <div class="sidebar-module">
+        <div class="panel panel-default">
+          <div class="panel-heading">Arquivos</div>
+          <div class="panel-body">
+            {{#each data.attachment}}
+              <a href="{{urls.original}}" download><i class="fa fa-download" aria-hidden="true"></i> {{originalname}}</a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div id="comment-{{record.id}}" class="comment-teaser" data-we-model="comment" data-we-modelId="{{record.id}}" >
+  {{#if record.creator}}
+    {{#link-to 'user.findOne' record.creatorId class="comment-creator-avatar pull-left"}}
+      {{we-avatar id=record.creatorId style='thumbnail' class="media-object" width="20px"}}
+    {{/link-to}}
+  {{/if}}
+
+  <div class="media-body">
+    <h4 class="media-heading">
+      <span class='creator-displayName'>{{record.creator.displayName}}</span>
+    <span class="post-date">{{we-time-ago record.createdAt locals=locals}}</span>
+    </h4>
+    <div class="comment-body">{{{record.body}}}</div>
+  </div>
+  <div class="comment-footer">
+      <div class="comment-actions">
+        {{we-action-edit-btn 'comment'  record locals.req record.id redirectTo=locals.redirectTo}}
+        {{we-action-delete-btn 'comment' record locals.req record.id  redirectTo=locals.redirectTo}}
+      </div>
+    </div>
+</div>

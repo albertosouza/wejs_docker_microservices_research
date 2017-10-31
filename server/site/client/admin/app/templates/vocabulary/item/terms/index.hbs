@@ -1,0 +1,10 @@
+<h1 class="page-header">{{t 'term.find'}}</h1>
+
+<div class="actions">
+  {{#link-to 'vocabulary.item.terms.create' model.vocabulary.id class="btn btn-default"}}
+    <i class="glyphicon glyphicon-plus"></i> {{t 'term.create'}}
+  {{/link-to}}
+</div>
+<br>
+
+{{conteudos-table data=model.records columns=model.columns pageSize=25 useFilteringByColumns=false deleteRecord='deleteRecord'}}

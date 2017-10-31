@@ -1,0 +1,46 @@
+<header>
+{{#if data.slideshow.slides}}
+  <div id="homeSlideshow" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      {{#each data.slideshow.slides as |slide key|}}
+        <li data-target="#homeSlideshow" data-slide-to="{{key}}" class="{{#if @first}}active{{/if}}"></li>
+      {{/each}}
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      {{#each data.slideshow.slides as |slide|}}
+        <div class="item {{#if @first}}active{{/if}}" style="background-image: url('{{slide.imageOBJ.urls.bannerbig}}')">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-1">
+
+                <div class="header-content">
+                  <div class="header-content-inner">
+                    <h2><span>{{slide.title}}</span></h2>
+                    <p class="slide-description">{{slide.description}}</p>
+                    <a href="{{slide.link}}" class="btn btn-outline btn-xl page-scroll">{{slide.linkText}}</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#homeSlideshow" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#homeSlideshow" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+{{/if}}
+
+
+</header>

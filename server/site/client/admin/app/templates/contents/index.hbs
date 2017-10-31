@@ -1,0 +1,15 @@
+<h1 class="page-header">{{t 'content.find'}}</h1>
+<div class="actions">
+  {{#link-to 'contents.create' class="btn btn-default"}}
+    <i class="glyphicon glyphicon-plus text-success"></i> {{t 'content.create'}}
+  {{/link-to}}
+</div>
+<br>
+{{conteudos-table
+  data=model.records
+  columns=model.columns
+  pageSize=25
+  useFilteringByColumns=false
+  deleteRecord='deleteRecord'
+  changePublishedStatus='changePublishedStatus'
+}}

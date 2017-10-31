@@ -1,0 +1,29 @@
+/**
+ * Css for menu and links
+ */
+
+.sortable-item {
+  transition: all .125s;
+}
+.sortable-item.is-dragging {
+  transition-duration: 0s;
+  background: #337ab7;
+  color: #fff;
+  z-index: 10;
+}
+
+.menu-links-actions {
+  margin-bottom: 5px;
+}
+
+.settings-submenu {
+  margin-bottom: 10px;
+  font-size: 0.9em;
+}
+
+.settings-submenu .nav > li > a {
+  position: relative;
+  display: block;
+  padding: 7px 10px;
+}
+

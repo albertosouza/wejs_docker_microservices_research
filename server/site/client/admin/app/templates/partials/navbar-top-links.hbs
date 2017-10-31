@@ -1,0 +1,31 @@
+{{#navbar.nav class="navbar-top-links navbar-right" as |nav|}}
+  {{#bs-dropdown tagName="li" as |dd|}}
+    {{#dd.toggle}}
+      {{#if settings.user.avatar}}
+        {{we-image file=settings.user.avatar size='thumbnail' class="navbar-user-avatar"}}
+      {{else}}
+        <i class="fa fa-user fa-fw"></i>
+      {{/if}}
+      {{settings.user.displayName}} <span class="caret"></span>
+    {{/dd.toggle}}
+    {{#dd.menu as |ddm|}}
+      {{#active-link}}
+        {{#link-to 'profile.index'}}
+          <i class="glyphicon glyphicon-pencil"></i> {{t 'menu.user.edit'}}
+        {{/link-to}}
+      {{/active-link}}
+
+      {{#active-link}}
+        {{#link-to 'profile.change-password'}}
+          <i class="glyphicon glyphicon-lock"></i> {{t 'auth.change-password'}}
+        {{/link-to}}
+      {{/active-link}}
+      <li role="separator" class="divider"></li>
+      {{#active-link}}
+        {{#link-to "logout"}}
+          <i class="glyphicon glyphicon-off"></i> {{t 'Logout'}}
+        {{/link-to}}
+      {{/active-link}}
+    {{/dd.menu}}
+  {{/bs-dropdown}}
+{{/navbar.nav}}

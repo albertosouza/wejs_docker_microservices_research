@@ -1,0 +1,84 @@
+<nav id="mainNav" class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i>
+      </button>
+
+      {{#link-to 'event.findOne' event.id class="navbar-brand navbar-event-brand"}}
+        {{#each event.logo}}
+          <img class="img-responsive event-logo" src="{{urls.thumbnail}}" alt="{{../event.title}} logo">
+        {{else}}
+          <span class="nav-brand-text">{{event.abbreviation}}</span>
+        {{/each}}
+      {{/link-to}}
+{{!--
+      <a class="navbar-brand page-scroll" href="/">
+        {{#if req.we.systemSettings.logoUrl}}
+          <img src="{{req.we.systemSettings.logoUrl}}"
+               alt="Logo" >
+        {{/if}}
+        {{#if req.we.systemSettings.siteName}}
+          <span>{{req.we.systemSettings.siteName}}</span>
+        {{/if}}
+      </a> --}}
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {{we-menu userMenu  class="nav navbar-nav navbar-right"}}
+      {{{we-cf-menu event.mainMenu class="event-main-menu nav navbar-nav" skipMenuClass=true}}}
+    </div>
+  </div>
+</nav>
+
+{{!-- <a id="skippy" class="sr-only-focusable " href="#content">{{t 'skip.to.content.link.text'}}</a>
+<div id="site-menu">
+  <ul>
+    <li>
+      <a class="events-icon" href="/event">
+        <span class="fa fa-sign-out fa-flip-horizontal" aria-hidden="true"></span>
+        <span class="sr-only">{{t 'home'}}</span>
+      </a>
+    </li>
+    <li>
+      <a class="home-icon" href="/">
+        <span class="fa fa-home" aria-hidden="true"></span>
+        <span class="sr-only">{{t 'event.find'}}</a>
+      </a>
+    </li>
+
+    <li>
+      <a class="facebook-icon" href="http://www.facebook.com/sharer.php?u={{req.we.config.hostname}}{{req.url}}" target="_blank">
+      <span class="fa fa-facebook-official" aria-hidden="true"></span>
+        <span class="sr-only">{{t 'event.find'}}</a>
+      </a>
+    </li>
+    <li>
+      <a class="twitter-icon" href="http://www.twitter.com/share?url={{req.we.config.hostname}}{{req.url}}" target="_blank">
+        <span class="fa fa-twitter" aria-hidden="true"></span>
+        <span class="sr-only">{{t 'event.find'}}</a>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="navbar navbar-default navbar-event"><div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    {{#link-to 'event.findOne' event.id class="navbar-brand navbar-event-brand"}}
+      {{#each event.logo}}
+        <img class="img-responsive event-logo" src="{{urls.thumbnail}}" alt="{{../event.title}} logo">
+      {{else}}
+        <span class="nav-brand-text">{{event.abbreviation}}</span>
+      {{/each}}
+    {{/link-to}}
+  </div>
+  <div class="collapse navbar-collapse">
+    {{{we-cf-menu event.mainMenu class="event-main-menu nav navbar-nav" skipMenuClass=true}}}
+    {{we-menu userMenu}}
+  </div>
+</div></div> --}}

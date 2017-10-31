@@ -1,0 +1,28 @@
+{{#if model.record.id}}
+<h1 class="page-header">{{t 'term.edit' text=model.record.text}}</h1>
+{{else}}
+<h1 class="page-header">{{t 'term.create'}}</h1>
+{{/if}}
+
+<form {{action "save" model.record on="submit"}}>
+  <fieldset>
+    <div class="form-group">
+      <label>{{t 'form-term-text'}}*:</label>
+      {{input value=model.record.text class="form-control" placeholder=(t 'form-placeholder-term-text') required="required"}}
+    </div>
+    <div class="form-group">
+      <label>{{t 'form-term-description'}}:</label>
+      {{textarea value=model.record.description class="form-control" placeholder=(t 'form-placeholder-term-description')}}
+    </div>
+  </fieldset>
+  <div>
+    <button class="btn btn-primary">
+      <i class="fa fa-save"></i>
+      {{t 'Save'}}
+    </button>
+    <button {{action 'goTo' 'vocabulary.item.terms' model.vocabulary.id}} type="button" class="btn btn-default">
+      <i class="fa fa-step-backward"></i>
+      {{t 'term.find'}}
+    </button>
+  </div>
+</form>

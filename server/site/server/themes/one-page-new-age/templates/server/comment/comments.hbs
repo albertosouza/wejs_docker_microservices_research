@@ -1,0 +1,35 @@
+<h4>Comentários:</h4>
+
+{{#if locals.req.user.id}}
+
+{{else}}
+  Para enviar comentários você deve estar autenticado, <a href="/login">clique aqui</a> para se autenticar.
+{{/if}}
+
+<div id="comment-{{modelName}}-{{modelId}}" class="comment-{{modelName}}-{{modelId}} comments-area {{#unless comments.length}}comments-empty{{/unless}}" data-modelname="{{modelName}}" data-modelid="{{modelId}}">
+
+  {{#can permission='create_comment' roleNames=locals.req.userRoleNames}}
+    <div class="comment-button" onclick="we.comment.showForm('{{modelName}}', '{{modelId}}', event);">{{t "comment.form.button"}}</div>
+    <div class="loading-comment-form"></div>
+    <div class="comment-form"></div>
+  {{/can}}
+
+  <div class="comments-sumary" {{#unless comments.length}}style="display:none;"{{/unless}}>
+    {{{t 'comment.list.sumary' size=comments.length count=count}}}
+  </div>
+
+  <div data-comments-page="1" data-comments-url="/comment?modelName={{modelName}}&modelId={{modelId}}" class="comments {{#if haveMore}}have-more-comments{{/if}}">
+    {{#each comments}}
+      {{render-record-teaser modelName='comment' record=this locals=../locals}}
+    {{/each}}
+  </div>
+
+  {{#if haveMore}}
+  <a class="show-more-comments-link" href="javascript: we.comment.showAll('{{modelName}}', '{{modelId}}');">
+    <span class="show-all-comments">{{t 'comment.list.show.all'}}</span>
+  </a>
+  {{/if}}
+</div>
+<script>$(function(){
+  we.comment.pubSub.register('comment-{{modelName}}-{{modelId}}');
+});</script>

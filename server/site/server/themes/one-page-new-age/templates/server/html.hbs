@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{locale}}">
+<head>
+  <title>
+    {{title}} {{#if title}}|{{/if}}
+    {{#if req.we.systemSettings.siteName}}
+      {{req.we.systemSettings.siteName}}
+    {{else}}
+      {{req.we.config.appName}}
+    {{/if}}
+  </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  {{#if _csrf}}<meta name="csrf-token" content="{{_csrf}}" />{{/if}}
+
+  {{#if req.we.systemSettings.iconUrl}}
+    <link rel="shortcut icon" href="{{req.we.systemSettings.iconUrl}}">
+  {{/if}}
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
+  {{{render-metadata-tags}}}
+  {{{render-stylesheet-tags}}}
+  {{{render-javascript-tags 'header'}}}
+</head>
+<body id="page-top" class="body-{{controller}}-{{action}} {{#each req.userRoleNames}}ur-{{this}} {{/each}}">
+  {{we-event event="we-html-body-start"}}
+  {{{template 'partials/header'}}}
+  {{{layoutHtml}}}
+  {{{template 'partials/footer'}}}
+  {{we-event event="we-html-body-end"}}
+</body>
+</html>

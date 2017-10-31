@@ -1,0 +1,48 @@
+<div class="row hotel-event-teaser">
+  <div class="col-md-3">
+    {{#if record.featuredImage}}
+      {{#link-to-record record=record}}
+        {{we-image record.featuredImage "large" width="100%"}}
+      {{/link-to-record}}
+    {{/if}}
+  </div>
+
+  <div class="col-md-9">
+    <h2 class="hotel-event-name">
+      {{#link-to-record record=record}}
+        {{record.name}} {{#unless record.published}} <small><span class="label label-warning">Despublicado</span></small> {{/unless}}
+      {{/link-to-record}}
+    </h2>
+    <div class="hotel-event-dates">
+      <div class="hotel-event-date">
+        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Data do evento: de <strong>{{we-date record.eventStartDate "DD/MM/YYYY HH\h\s" locals=this}}</strong> à <strong>{{we-date record.eventEndDate "DD/MM/YYYY HH\h\s" locals=this}}</strong>
+      </div>
+      <div class="hotel-event-registrationDate">
+        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Inscrição: de <strong>{{we-date record.registrationStartDate "DD/MM/YYYY HH\h\s" locals=this}}</strong> à <strong>{{we-date record.registrationEndDate "DD/MM/YYYY HH\h\s" locals=this}}</strong>
+      </div>
+    </div>
+    <p class="hotel-event-about">{{record.about}}</p>
+
+    {{#ifCond record.registrationStatus 'closed_before'}}
+      <div class="registration-link">
+        <a href="{{record.registrationLink}}" class="btn btn-default disabled" target="_blank">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Inscrição</a>
+      </div>
+    {{/ifCond}}
+
+    {{#ifCond record.registrationStatus 'open'}}
+      <div class="registration-link">
+        <a href="{{record.registrationLink}}" class="btn btn-primary" target="_blank">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Inscrição</a>
+      </div>
+    {{/ifCond}}
+
+    {{#ifCond record.registrationStatus 'closed_after'}}
+      <div class="registration-link">
+        <a href="{{record.registrationLink}}" class="btn btn-default disabled" target="_blank">
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Inscrição</a>
+      </div>
+    {{/ifCond}}
+
+  </div>
+</div>

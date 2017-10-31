@@ -1,0 +1,36 @@
+<div class="row groups my-group-invites">
+  <div class="col-lg-12">
+
+    {{template 'group/find-header'}}
+
+    <div class="tab-content">
+      {{#if data}}
+        <div class="group-invites">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>{{t 'id'}}</th>
+                <th>{{t 'email'}}</th>
+                <th>{{t 'actions'}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data}}
+                <tr>
+                  <td>{{name}}</td>
+                  <td>{{email}}</td>
+                  <th>
+                    {{{group-membership-btn groupId=groupId privacity='public' locals=../this}}}
+                  </th>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+          {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+        </div>
+      {{else}}
+        <p class="text-center jumbotron">{{t 'membershipinvite.find.my.empty'}}</p>
+      {{/if}}
+    </div>
+  </div>
+</div>

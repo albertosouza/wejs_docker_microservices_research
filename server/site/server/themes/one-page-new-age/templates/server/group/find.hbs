@@ -1,0 +1,31 @@
+<div class="row groups">
+  <div class="col-lg-12">
+    {{template 'group/find-header'}}
+    <div class="tab-content">
+      <div class="groups-search">
+        <form class="form-inline" method="get">
+          <div class="form-group">
+            <label for="groups-search">{{t 'group.search.title'}}</label>
+            <input name="name" type="text" class="form-control" id="groups-search" value="{{req.query.name}}">
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-primary">{{t 'Search'}}</button>
+          </div>
+          <input name="my" type="hidden" value="{{req.query.my}}">
+        </form>
+      </div>
+
+      <div class="groups">
+      {{#each data}}
+        {{render-record-teaser modelName='group' record=this locals=..}}
+      {{else}}
+        <p class="text-center jumbotron">{{t 'group.find.empty'}}</p>
+      {{/each}}
+      </div>
+
+      {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+    </div>
+  </div>
+
+</div>

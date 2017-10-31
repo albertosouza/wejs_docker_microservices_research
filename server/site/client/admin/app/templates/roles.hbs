@@ -1,0 +1,28 @@
+<div class="row"><div class="col-md-12">
+  <h1>{{t 'roles.link'}}</h1>
+  <ul class="list-group">
+    {{#each model.roles as |role|}}
+      <li class="list-group-item">
+        {{role.name}}
+        {{#unless role.isSystemRole}}
+          <button {{action 'deleteRole' role}} class="btn btn-default btn-sm">
+            <i class="glyphicon glyphicon-remove text-danger"></i>
+          </button>
+        {{/unless}}
+      </li>
+    {{/each}}
+    <li class="list-group-item">
+      <form {{action "createRole" model.newRole on="submit"}} class="form-inline">
+        <fieldset>
+          <div class="form-group">
+            <label class="sr-only">{{t 'form-role-name'}}*:</label>
+            {{input value=model.newRole.name class="form-control" placeholder=(t 'form-placeholder-role-name') required="required"}}
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i></button>
+          </div>
+        </fieldset>
+      </form>
+    </li>
+  </ul>
+</div></div>

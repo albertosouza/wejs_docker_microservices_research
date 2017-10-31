@@ -1,0 +1,20 @@
+{{#or locals.group  values.groupId}}
+  <div class="form-group {{#if error}}has-error has-feedback{{/if}}">
+    <label for="{{fieldId}}">{{t fieldName}} {{#ifCond field.allowNull false}}*{{/ifCond}}</label>
+    {{{field-help-error error}}}
+
+    <select id="{{fieldId}}" name="{{name}}" class="form-control" {{fieldAttrs}}>
+      <option {{#unless value}}selected="selected"{{/unless}} value="">{{t 'group.category.null'}}</option>
+      {{#each locals.group.categories as |category|}}
+        {{#we-contains ../values.category category}}
+          <option selected="selected" value="{{category}}">{{category}}</option>
+        {{else}}
+          <option value="{{category}}">{{category}}</option>
+        {{/we-contains}}
+      {{/each}}
+    </select>
+
+    <p class="help-block">{{t help}}</p>
+    {{{field-help-error error}}}
+  </div>
+{{/or}}

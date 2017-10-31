@@ -1,0 +1,30 @@
+{{#if model.record.id}}
+<h1 class="page-header">
+  {{t 'vocabulary.edit' name=model.record.name}}
+</h1>
+{{else}}
+<h1 class="page-header">{{t 'vocabulary.create'}}</h1>
+{{/if}}
+
+<form {{action "save" model.record on="submit"}}>
+  <fieldset>
+    <div class="form-group">
+      <label>{{t 'form-vocabulary-name'}}*:</label>
+      {{input value=model.record.name class="form-control" placeholder=(t 'form-placeholder-vocabulary-name') required="required"}}
+    </div>
+    <div class="form-group">
+      <label>{{t 'form-vocabulary-description'}}:</label>
+      {{textarea value=model.record.description class="form-control" placeholder=(t 'form-placeholder-vocabulary-description')}}
+    </div>
+  </fieldset>
+  <div>
+    <button class="btn btn-primary">
+      <i class="fa fa-save"></i>
+      {{t 'Save'}}
+    </button>
+    <button {{action 'goTo' 'vocabulary.index'}} type="button" class="btn btn-default">
+      <i class="fa fa-step-backward"></i>
+      {{t 'vocabulary.find'}}
+    </button>
+  </div>
+</form>

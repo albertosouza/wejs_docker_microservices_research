@@ -1,0 +1,50 @@
+<div class="content-box-large">
+  <div class="panel-heading">
+    <h1>{{t 'Profile'}}</h1>
+  </div>
+  <div class="panel-body">
+    <form {{action "save" model.user on="submit"}}>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-user-username'}}</label>
+          {{input value=model.user.username class="form-control" placeholder=(t 'form-placeholder-user-username') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-displayName'}}</label>
+          {{input value=model.user.displayName class="form-control" placeholder=(t 'form-placeholder-user-displayName') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-email'}}</label>
+          {{input value=model.user.email class="form-control" placeholder=(t 'form-placeholder-user-email') disabled=settings.notIsAdmin}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-biography'}}</label>
+          {{textarea value=model.user.biography class="form-control" rows="4"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-language'}}</label>
+          {{#power-select
+            options=settings.data.locales
+            selected=model.user.language
+            searchEnabled=false
+            onchange=(action (mut model.user.language) )
+            as |locale|
+          }}
+            {{locale}}
+          {{/power-select}}
+        </div>
+
+        <div class="form-group">
+          <label>{{t 'form-user-avatar'}}:</label>
+          {{image-uploader value=model.user.avatar}}
+        </div>
+      </fieldset>
+      <div>
+        <button class="btn btn-default">
+          <i class="glyphicon glyphicon-floppy-save"></i>
+          Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

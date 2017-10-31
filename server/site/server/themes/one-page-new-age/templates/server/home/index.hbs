@@ -1,0 +1,103 @@
+{{#if data.news.length}}
+<section class="features" id="news">
+  <div class="container">
+    <div class="section-heading text-center">
+      <h2>Notícias</h2>
+      <p class="text-muted">Veja aqui as ultimas novidades do hotel.</p>
+    </div>
+    <div class="row">
+      {{#each data.news}}
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            {{#each featuredImage}}
+              <a href="/content/{{../id}}">
+                <img class="img-responsive" src="{{urls.large}}">
+              </a>
+            {{/each}}
+            <div class="panel-body">
+              <h3>
+                <a href="/content/{{id}}">{{title}}</a>
+              </h3>
+              <p>
+                {{{about}}}
+                <br><a href="/content/{{id}}">leia mais <i class="glyphicon glyphicon-link"></i></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+{{#if data.events.length}}
+<section class="features" id="events">
+  <div class="container">
+    <div class="section-heading text-center">
+      <h2>Eventos</h2>
+      <p class="text-muted">Veja aqui os ultimos eventos do hotel.</p>
+    </div>
+    <div class="row">
+      {{#each data.events}}
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            {{#each featuredImage}}
+              <a href="/content/{{../id}}">
+                <img class="img-responsive" src="{{urls.large}}">
+              </a>
+            {{/each}}
+            <div class="panel-body">
+              <h3>
+                <a href="/content/{{id}}">{{name}}</a>
+              </h3>
+
+              <div class="hotel-event-dates">
+                <div class="hotel-event-date">
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Início: <strong>{{we-date eventStartDate "DD/MM/YYYY HH:00\h\s" locals=../../this}}</strong>
+                </div>
+                <div class="hotel-event-registrationDate">
+                  <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Inscrição: <strong>{{we-date registrationStartDate "DD/MM/YYYY HH:00\h\s" locals=../../this}}</strong>
+                </div>
+              </div>
+
+              <p>
+                {{{about}}}
+                <br><a href="/content/{{id}}">leia mais <i class="glyphicon glyphicon-link"></i></a>
+              </p>
+
+
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}
+
+{{#if data.projects.length}}
+<section class="contact bg-primary" id="contact">
+  <div class="container">
+    <div class="section-heading text-center">
+      <h2>Projetos</h2>
+      <p class="text-muted">Confira alguns projetos da ONG</p>
+      <hr>
+    </div>
+    <div class="row">
+      {{#each data.projects}}
+        <div class="col-md-10 col-md-offset-1">
+          <div class="text-center">
+            {{#each featuredImage}}
+              <img class="img-thumbnail" src="{{urls.medium}}">
+            {{/each}}
+          </div>
+          <div class="text-left">{{{body}}}</div>
+          <hr>
+          <br>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+</section>
+{{/if}}

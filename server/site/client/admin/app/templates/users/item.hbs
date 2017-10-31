@@ -1,0 +1,101 @@
+<h1 class="page-header">{{t 'user.edit' username=model.user.username}}</h1>
+
+{{#bs-tab as |tab|}}
+  {{#tab.pane title=(t 'user.Data')}}
+    <form {{action "save" model.user on="submit"}}>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-user-username'}}:</label>
+          {{input value=model.user.username class="form-control" placeholder=(t 'form-placeholder-user-username') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-displayName'}}*:</label>
+          {{input value=model.user.displayName class="form-control" placeholder=(t 'form-placeholder-user-displayName') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-email'}}:</label>
+          {{input value=model.user.email class="form-control" placeholder=(t 'form-placeholder-user-email') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-biography'}}:</label>
+          {{textarea value=model.user.biography class="form-control" rows="4"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-language'}}:</label>
+          {{#power-select
+            options=settings.data.locales
+            selected=model.user.language
+            searchEnabled=false
+            onchange=(action (mut model.user.language) )
+            as |locale|
+          }}
+            {{locale}}
+          {{/power-select}}
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-user-avatar'}}:</label>
+          {{image-uploader value=model.user.avatar multiple=false}}
+        </div>
+      </fieldset>
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          {{t 'Save'}}
+        </button>
+
+        <div class="pull-right">
+          {{#if model.user.active}}
+            <button {{action 'changeActiveStatus' model.user false}} type="button" class="btn btn-warning">
+              {{t 'Disable'}}
+            </button>
+          {{else}}
+            <button {{action 'changeActiveStatus' model.user true}} type="button" class="btn btn-success">
+              {{t 'Enable'}}
+            </button>
+          {{/if}}
+        </div>
+      </div>
+    </form>
+  {{/tab.pane}}
+  {{#tab.pane title=(t 'auth.Password-and-login')}}
+    <h4>{{t 'auth.change-password'}}</h4>
+    <form {{action "changePassword" model on="submit"}}>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-change-password-newPassword'}}</label>
+          {{input value=model.newPassword class="form-control" placeholder=(t 'form-placeholder-change-password-newPassword') required="required" type="password"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-change-password-rNewPassword'}}</label>
+          {{input value=model.rNewPassword class="form-control" placeholder=(t 'form-placeholder-change-password-rNewPassword') required="required" type="password"}}
+        </div>
+      </fieldset>
+      <div>
+        <button type="submit" class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          {{t 'Send'}}
+        </button>
+      </div>
+    </form>
+  {{/tab.pane}}
+  {{#tab.pane title=(t 'roles.link')}}
+    <ul class="list-group">
+      {{#each model.roles as |role|}}
+        {{#if role.canAddInUsers}}
+          <li class="list-group-item">
+            {{user-role-checkbox
+              user=model.user
+              roleName=role.name
+              class="btn btn-default"
+              addUserRole="addUserRole"
+              removeUserRole="removeUserRole"
+            }}
+            {{role.name}}
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{/tab.pane}}
+{{/bs-tab}}

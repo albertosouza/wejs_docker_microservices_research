@@ -1,0 +1,11 @@
+{{#if membership}}
+<form action="/api/v1/group/{{groupId}}/leave?redirectTo={{locals.req.url}}" method="post">
+  <button class="btn btn-sm btn-danger">{{t 'group.leave'}}</button>
+</form>
+{{else}}
+{{#ifCond privacity 'public'}}
+<form action="/api/v1/group/{{groupId}}/join?redirectTo={{locals.req.url}}" method="post">
+  <button class="btn btn-sm btn-success">{{t 'group.join'}}</button>
+</form>
+{{/ifCond}}
+{{/if}}

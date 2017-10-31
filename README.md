@@ -1,6 +1,20 @@
-# Microservices implementation with We.js
+# We.js project inside docker container
 
-# TEST ONLY! - IN DEVELOPMENT
+## Installation
+
+### 1- Clone this project ...
+
+### 2- Install project dependency:
+```sh
+cd server/site
+npm install
+```
+
+### 3- Start the docker compose containers:
+In root folder of this project:
+```sh
+docker-compose up -d
+```
 
 ## Services
 
@@ -8,8 +22,7 @@
 - client
 - - app (main app)
 - server
-- - auth 4001
-- - user 4002
+- - site 5400
 - database (mysql)
 - session service (redis)
 

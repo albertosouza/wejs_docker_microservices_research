@@ -1,0 +1,10 @@
+<h1 class="page-header">{{t 'user.find'}}</h1>
+
+<div class="actions">
+  {{#link-to 'users.create' class="btn btn-default"}}
+    <i class="glyphicon glyphicon-plus"></i> {{t 'Register'}}
+  {{/link-to}}
+</div>
+<br>
+
+{{conteudos-table data=model.users columns=model.columns pageSize=25 useFilteringByColumns=false}}

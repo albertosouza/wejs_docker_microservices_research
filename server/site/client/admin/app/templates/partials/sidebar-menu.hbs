@@ -1,0 +1,62 @@
+<div class="navbar-default sidebar" role="navigation">
+  <div class="sidebar-nav navbar-collapse">
+    {{#ember-metismenu classNames="nav"}}
+      <li>
+        {{#link-to 'index'}}
+          <i class="fa fa-bar-chart"></i> {{t 'admin.Dashboard'}}
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'contents.index'}}
+          <i class="fa fa-file-text"></i> Notícias
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'slides.index'}}
+          <i class="fa fa-slideshare"></i> Slideshow
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'site-contacts.index'}}
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>  Mensagens de contato
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'menus.index'}}
+          <i class="fa fa-bars"></i> {{t 'menu.find'}}
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'vocabulary'}}
+          <i class="fa fa-tags"></i> {{t 'vocabulary.find'}}
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'url-alia.index'}}
+          <i class="fa fa-random"></i> {{t 'urlAlias.find'}}
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'users.index'}}
+          <i class="fa fa-users"></i> {{t 'user.find'}}
+        {{/link-to}}
+      </li>
+
+      <li>
+        {{#link-to 'settings.index'}}
+          <i class="fa fa-wrench"></i> Configurações
+        {{/link-to}}
+      </li>
+{{!--       <li>
+        {{#link-to 'roles'}}
+          <i class="fa fa-credit-card" aria-hidden="true"></i> {{t 'roles.link'}}
+        {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'permissions'}}
+          <i class="fa fa-unlock-alt"></i> {{t 'permission.link'}}
+        {{/link-to}}
+      </li> --}}
+    {{/ember-metismenu}}
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="groups-actions">{{we-action-create-btn resourceName req}}</div>
+
+{{#if req.user.id}}
+<div class="groups-menu">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation" {{#if showUserGroups}}class="active"{{/if}}><a href="/group?my=true">{{t 'group.filter.my'}}</a></li>
+    <li role="presentation" {{#if showAllGroups}}class="active"{{/if}}>
+    {{#link-to 'group.find'}}
+      {{t 'group.filter.all'}}</a></li>
+    {{/link-to}}
+    <li role="presentation" {{#if showNewGroups}}class="active"{{/if}}><a href="/group?my=false">{{t 'group.filter.new'}}</a></li>
+    <li role="presentation" {{#if showInvites}}class="active"{{/if}}><a href="/group/my-invites">{{t 'membershipinvite.find'}}</a></li>
+  </ul>
+</div>
+{{/if}}

@@ -1,0 +1,27 @@
+<div class="settings-submenu">
+  <ul class="nav nav-pills">
+    {{#active-link role="presentation"}}
+      {{#link-to 'settings.index'}}
+        <i class="fa fa-wrench" aria-hidden="true"></i> Dados do sistema
+      {{/link-to}}
+    {{/active-link}}
+
+    {{#active-link role="presentation"}}
+      {{#link-to 'settings.integrations'}}
+        <i class="fa fa-mixcloud" aria-hidden="true"></i> Integrações
+      {{/link-to}}
+    {{/active-link}}
+
+    {{#active-link role="presentation"}}
+      {{#link-to 'settings.project'}}
+        <i class="glyphicon glyphicon-briefcase" aria-hidden="true"></i> Dados do hotel
+      {{/link-to}}
+    {{/active-link}}
+
+    {{#active-link role="presentation"}}
+      {{#link-to 'settings.theme'}}
+        <i class="fa fa-tachometer" aria-hidden="true"></i> Visual e tema
+      {{/link-to}}
+    {{/active-link}}
+  </ul>
+</div>

@@ -1,0 +1,52 @@
+<h1 class="page-header">Tema e visual do sistema</h1>
+
+{{settings-menu}}
+
+<form {{action "save" model.settings on="submit"}}>
+  <div class="row">
+
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">Configurações do tema:</div>
+        <div class="panel-body">
+          <fieldset>
+
+            <div class="form-group">
+              <label>Cores do site:</label>
+              {{#power-select
+                options=settings.themeCollorOptions
+                selected=model.themeCollor
+                searchEnabled=false
+                onchange=(action (mut model.themeCollor) )
+                as |opts|
+              }}
+                {{opts.name}}
+              {{/power-select}}
+            </div>
+
+          </fieldset>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          Salvar
+        </button>
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">Configurações Atuais:</div>
+        <div class="panel-body">
+          <fieldset>
+            <p>Tema ativo: <strong>{{model.themeConfigs.enabled}}</strong></p>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

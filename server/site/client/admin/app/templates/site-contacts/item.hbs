@@ -1,0 +1,49 @@
+<h1>Mensagem #{{model.record.id}}</h1>
+
+<div class="panel panel-default">
+  <div class="panel-heading"></div>
+  <div class="panel-body">
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="site-contact">
+          <div class="site-contact-name">
+            <strong>Nome:</strong> {{model.record.name}}
+          </div>
+          <div class="site-contact-email">
+            <strong>Email:</strong> {{model.record.email}}
+          </div>
+          <div class="site-contact-phone">
+            <strong>Telefone:</strong> {{model.record.phone}}
+          </div>
+          <div class="site-contact-message">
+            <div><strong>Mensagem:</strong></div>
+            <pre>{{model.record.message}}</pre>
+          </div>
+        </div>
+
+        <div>
+
+        {{#if model.record.isClosed}}
+          <button {{action 'changeStatus' model.record "opened"}} type="button" class="btn btn-default btn-sm">
+            <i class="glyphicon glyphicon-unchecked text-danger"></i>
+            Marcar como pendente
+          </button>
+        {{else}}
+          <button {{action 'changeStatus' model.record "closed"}} type="button" class="btn btn-default btn-sm">
+            <i class="glyphicon glyphicon-check text-success"></i>
+            Resolver
+
+          </button>
+        {{/if}}
+
+          <button {{action "goTo" "site-contacts.index"}} type="button" class="btn btn-default btn-sm">
+            <i class="fa fa-step-backward"></i>
+            Ir para a lista
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

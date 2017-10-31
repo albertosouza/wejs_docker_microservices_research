@@ -1,0 +1,16 @@
+{{!--
+<div class="events-menu">
+  <ul class="nav nav-tabs nav-justified">
+    <li role="presentation" class="active">
+      <a href="/event">{{t 'event.find'}}</a>
+    </li>
+  </ul>
+</div>
+ --}}
+<div class="events-area-search">
+  {{#each data}}
+    {{render-record-teaser modelName='event' record=this locals=..}}
+  {{else}}
+    {{t 'event.find.empty'}}
+  {{/each}}
+</div>

@@ -1,0 +1,38 @@
+{{template 'membershipinvite/search' locals=this}}
+
+{{#if userToInvite}}
+<form action="/group/{{group.id}}/member/invite/create" method="post">
+  <input name="userId" type="hidden" value="{{userToInvite.id}}">
+  <input name="inviterId" type="hidden" value="{{res.req.user.id}}">
+  <input name="redirectTo" type="hidden" value="{{res.req.urlBeforeAlias}}">
+
+  <div class="user-to-invite">
+    {{we-avatar id=userToInvite.id style="thumbnail"}}
+    {{userToInvite.displayName}}
+    <button class="btn btn-success">Invite</button>
+  </div>
+</form>
+{{/if}}
+
+{{#if data}}
+<div class="group-invites">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{t 'name'}}</th>
+        <th>{{t 'email'}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each data}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{email}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+</div>
+{{/if}}

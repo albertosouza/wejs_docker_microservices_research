@@ -1,0 +1,21 @@
+{
+  "name": "one-page-new-age",
+  "private": true,
+  "version": "1.0.13",
+  "main": "theme.js",
+  "scripts": {
+    "start": "gulp server"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-css": "^1.2.4"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "author": "Alberto Souza <contato@albertosouza.net>"
+}

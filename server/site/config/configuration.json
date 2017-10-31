@@ -1,0 +1,99 @@
+{
+  "roles": {
+    "administrator": {
+      "name": "administrator",
+      "permissions": [],
+      "canAddInUsers": true,
+      "isSystemRole": true
+    },
+    "authenticated": {
+      "name": "authenticated",
+      "permissions": [
+        "findOne_group",
+        "find_group",
+        "create_group",
+        "find_post",
+        "create_post",
+        "upload_image",
+        "find_image",
+        "upload_file",
+        "find_file",
+        "find_user",
+        "find_comment",
+        "create_comment",
+        "find_content",
+        "find_slideshow",
+        "find_slide",
+        "find_hotel-room",
+        "create_comment",
+        "find_term",
+        "find_vocabulary",
+        "create_contact_message",
+        "find_group.post",
+        "use_follow",
+        "use_flag"
+      ],
+      "isSystemRole": true
+    },
+    "unAuthenticated": {
+      "name": "unAuthenticated",
+      "permissions": [
+        "find_group",
+        "find_post",
+        "find_image",
+        "find_file",
+        "find_group.post",
+        "find_user",
+        "find_content",
+        "find_slideshow",
+        "find_slide",
+        "find_term",
+        "find_vocabulary",
+        "find_comment",
+        "find_hotel-room",
+        "create_contact_message"
+      ],
+      "isSystemRole": true
+    },
+    "owner": {
+      "name": "owner",
+      "permissions": [
+        "update_comment",
+        "update_post",
+        "delete_comment",
+        "delete_post"
+      ],
+      "isSystemRole": true
+    },
+    "groupMember": {
+      "name": "groupMember",
+      "isSystemRole": true,
+      "permissions": [
+        "find_group",
+        "find_post",
+        "find_group.post",
+        "create_post_in_group",
+        "create_group.post",
+        "update_group.post"
+      ]
+    },
+    "groupManager": {
+      "name": "groupManager",
+      "isSystemRole": true,
+      "permissions": [
+        "update_group",
+        "find_group",
+        "delete_group",
+        "manage_group",
+        "find_group_member",
+        "post_highlight",
+        "create_post_in_group",
+        "update_post_in_group",
+        "delete_post_in_group",
+        "find_group.post",
+        "create_group.post",
+        "update_group.post"
+      ]
+    }
+  }
+}

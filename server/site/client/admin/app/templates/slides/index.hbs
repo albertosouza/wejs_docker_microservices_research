@@ -1,0 +1,10 @@
+<h1 class="page-header">Slideshow</h1>
+
+<div class="actions">
+  {{#link-to 'slides.create' class="btn btn-default"}}
+    <i class="glyphicon glyphicon-plus"></i> Adicionar slide
+  {{/link-to}}
+</div>
+<br>
+
+{{conteudos-table data=model.records columns=model.columns pageSize=25 useFilteringByColumns=false deleteRecord='deleteRecord'}}

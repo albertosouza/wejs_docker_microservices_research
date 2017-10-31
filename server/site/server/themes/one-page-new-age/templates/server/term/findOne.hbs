@@ -1,0 +1,40 @@
+<div class="term-record">
+  <h2>{{data.text}} {{we-action-edit-btn resourceName data req data.vocabularyName data.text}}</h2>
+  <p class="term-description">{{{data.description}}}</p>
+</div>
+
+{{#if relatedModels.length}}
+  <div class="row">
+    <div class="col-md-6">
+      {{#each relatedModels}}
+        {{!-- is pair: --}}
+        {{#if relatedRecord}}
+          {{#isPair @key}}
+            <div class="term-related-record">
+              {{render-record-teaser modelName=modelName record=relatedRecord locals=..}}
+            </div>
+          {{else}}{{/isPair}}
+        {{/if}}
+      {{/each}}
+    </div>
+    <div class="col-md-6">
+      {{!-- not pair: --}}
+      {{#each relatedModels}}
+        {{#if relatedRecord}}
+
+          {{#isPair @key}}{{else}}
+            <div class="term-related-record">
+              {{render-record-teaser modelName=modelName record=relatedRecord locals=..}}
+            </div>
+          {{/isPair}}
+        {{/if}}
+      {{/each}}
+    </div>
+
+    <div class="col-md-12">
+      {{paginate count=metadata.relatedModelsCount limit=query.limit currentPage=query.page req=req}}
+    </div>
+  </div>
+{{else}}
+  <div class="empty-list-message">Esse termo ainda não tem nenhum conteúdo associado.</div>
+{{/if}}

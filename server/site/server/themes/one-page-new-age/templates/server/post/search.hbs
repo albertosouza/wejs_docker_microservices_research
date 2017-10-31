@@ -1,0 +1,23 @@
+<div class="post-search">
+  <form class="form-inline">
+    <div class="form-group">
+      <label for="postSearchQuery">{{t 'post.search.query'}}</label>
+      <input name="q" type="text" class="form-control" id="postSearchQuery" value="{{req.query.q}}">
+    </div>
+    <select id="postSearchObjectType" name="objectType" class="form-control">
+      {{#unless req.query.objectType}}
+        <option selected value="">{{t 'post.objectType.null'}}</option>
+      {{else}}
+        <option value="">{{t 'post.objectType.null'}}</option>
+      {{/unless}}
+      {{#each req.we.config.post.objectTypes}}
+        {{#ifCond this ../req.query.objectType }}
+          <option selected value="{{@key}}">{{t this}}</option>
+        {{else}}
+          <option value="{{@key}}">{{t this}}</option>
+        {{/ifCond}}
+      {{/each}}
+    </select>
+    <button type="submit" class="btn btn-default">{{t 'post.objectType.submit'}}</button>
+  </form>
+</div>

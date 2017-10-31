@@ -1,0 +1,17 @@
+{{#if req.user.id}}
+  {{template 'post/sharebox' locals=this}}
+{{/if}}
+{{template 'post/search' locals=this}}
+
+<div id="haveNewPosts" style="display: none" class="text-center alert alert-info" role="alert"><a href="{{req.originalUrl}}">
+  <span id="haveNewPostsCount"></span> {{t 'posts.news.count'}}
+</a></div>
+<div id="posts" class="posts">
+{{#each data}}
+  {{render-record-teaser modelName='post' record=this locals=..}}
+{{else}}
+  <p>{{t 'post.find.empty'}}</p>
+{{/each}}
+</div>
+
+{{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}

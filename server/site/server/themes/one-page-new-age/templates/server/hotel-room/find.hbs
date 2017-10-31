@@ -1,0 +1,37 @@
+<ol class="breadcrumb">
+  <li><a href="/">Início</a></li>
+  <li class="active">Quartos</li>
+</ol>
+
+<h1>Quartos</h1>
+
+<div class="row hotel-rooms">
+  {{#if data.length}}
+    <div class="col-md-6">
+      {{#each data}}
+        {{#isPair @key}}
+          <div class="hotel-room-record-teaser">
+            {{render-record-teaser modelName='hotel-room' record=this locals=..}}
+          </div>
+        {{else}}{{/isPair}}
+      {{/each}}
+    </div>
+    <div class="col-md-6">
+      {{#each data}}
+        {{#isPair @key}}{{else}}
+          <div class="hotel-room-record-teaser">
+            {{render-record-teaser modelName='hotel-room' record=this locals=..}}
+          </div>
+        {{/isPair}}
+      {{/each}}
+    </div>
+  {{else}}
+    <div class="col-md-12">
+      <p class="contents-empty">Nenhum quarto foi encontrado para essa lista.</p>
+    </div>
+  {{/if}}
+
+  <div class="col-md-12">
+    {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+  </div>
+</div>

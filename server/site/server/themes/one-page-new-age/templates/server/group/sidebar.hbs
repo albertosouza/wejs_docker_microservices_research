@@ -1,0 +1,22 @@
+<div class="group-sidebar">
+  <div class="group-logo">
+    {{#link-to 'group.post.find' group.id}}
+      {{we-image group.logo 'medium' class="img-thumbnail"}}
+    {{/link-to}}
+  </div>
+  <div class="group-members">
+    {{group.meta.membersCount}} {{t 'group.members'}} - {{t group.privacity}}
+  </div>
+  <div class="group-title">
+    <h3>{{group.name}}</h3>
+  </div>
+  <div class="group-actions">
+    {{{group-membership-btn groupId=group.id privacity=group.privacity membership=membership locals=this}}}
+
+    {{#can permission='update_group' roleNames=req.userRoleNames}}
+      {{we-action-edit-btn 'group' group req group.id}}
+    {{/can}}
+
+    {{{flag-follow modelName='group' modelId=group.id isFollowing=group.metadata.isFollowing locals=this }}}
+  </div>
+</div>

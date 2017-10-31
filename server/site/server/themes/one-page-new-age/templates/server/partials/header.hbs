@@ -1,0 +1,60 @@
+<div class="header-topbar">
+    <div class="container padding-none">
+      <div class="row">
+        <div class="col-sm-4 col-md-4 welcome-text hidden-xs">
+          <a href="/reservas" class="btn btn-theme btn-topbar hvr-shutter-out-vertical btn-default">
+            <i class="glyphicon glyphicon-briefcase"aria-hidden="true"></i> Reservas
+          </a>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          {{we-menu req.we.menu.social class="list-inline text-center icon-style-1"}}
+{{!--
+          <ul class="list-inline text-center icon-style-1">
+            <li class=" hvr-rectangle-out">
+              <a href="#">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class=" hvr-rectangle-out">
+              <a href="#">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li class=" hvr-rectangle-out">
+              <a href="#">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul> --}}
+        </div>
+        <div class="col-xs-6 hidden-xs col-sm-4 col-md-4 text-right">
+          <a href="/site-contact" class="btn btn-theme btn-topbar hvr-shutter-out-vertical btn-default">
+            <i class="glyphicon glyphicon-phone-alt"aria-hidden="true"></i> Entre em contato
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<nav id="mainNav" class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span> <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand page-scroll" href="/">
+        {{#if req.we.systemSettings.logoUrl}}
+          <img src="{{req.we.systemSettings.logoUrl}}"
+               alt="Logo" >
+        {{/if}}
+        {{#if req.we.systemSettings.siteName}}
+          <span>{{req.we.systemSettings.siteName}}</span>
+        {{/if}}
+      </a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      {{we-menu userMenu  class="nav navbar-nav navbar-right"}}
+      {{we-menu req.we.menu.main class="nav navbar-nav navbar-right"}}
+    </div>
+  </div>
+</nav>

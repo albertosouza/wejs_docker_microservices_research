@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+  {{#if record.featuredImage}}
+    {{#link-to-record record=record}}
+      {{we-image record.featuredImage "large" width="100%"}}
+    {{/link-to-record}}
+  {{/if}}
+  <div class="panel-body">
+    {{#link-to-record record=record}}
+      <h2 class="content-title">
+        {{record.title}} {{#unless record.published}} <small><span class="label label-warning">Despublicado</span></small> {{/unless}}
+      </h2>
+    {{/link-to-record}}
+    <p class="content-subtitle">{{record.about}}</p>
+
+    {{#ifCond record.categoryItem 'Notícias'}}
+      {{#if record.creator}}
+        <small class="content-meta text-muted">{{t 'Posted by'}}
+        {{#link-to-record record=record.creator}} {{record.creator.displayName}} {{/link-to-record}}
+        {{t 'on'}} {{we-date record.createdAt locals=locals}}
+        {{#if record.category}}{{#each record.category}}
+          <small>-
+            {{#link-to 'term.findOne' 'Category' this}} {{this}} {{/link-to}}
+          </small>
+        {{/each}}{{/if}}
+        </p>
+      {{/if}}
+    {{/ifCond}}
+
+  </div>
+</div>
+{{!--
+<div class="content-preview {{#unless record.published}}unpublished{{/unless}}">
+
+</div>
+ --}}

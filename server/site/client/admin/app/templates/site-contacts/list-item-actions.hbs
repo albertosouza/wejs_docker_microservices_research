@@ -1,0 +1,15 @@
+{{#link-to 'site-contacts.item' record.id class="btn btn-default btn-sm"}}
+  <i class="glyphicon glyphicon-eye-open"></i> Ver
+{{/link-to}}
+
+{{#if record.isClosed}}
+  <button {{action 'changeStatus' record "opened"}} type="button" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-unchecked text-danger"></i>
+    Marcar como pendente
+  </button>
+{{else}}
+  <button {{action 'changeStatus' record "closed"}} type="button" class="btn btn-default btn-sm">
+    <i class="glyphicon glyphicon-check text-success"></i>
+    Resolver
+  </button>
+{{/if}}

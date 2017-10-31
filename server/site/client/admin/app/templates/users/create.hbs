@@ -1,0 +1,48 @@
+<div class="content-box-large">
+  <div class="panel-heading">
+    <h1 class="page-header">{{t 'user.create'}}</h1>
+  </div>
+  <div class="panel-body">
+    <form {{action "create" model.user on="submit"}}>
+      <fieldset>
+        <div class="form-group">
+          <label>{{t 'form-user-username'}}:</label>
+          {{input value=model.user.username class="form-control" placeholder=(t 'form-placeholder-user-username') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-displayName'}}*:</label>
+          {{input value=model.user.displayName class="form-control" placeholder=(t 'form-placeholder-user-displayName') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-email'}}:</label>
+          {{input value=model.user.email class="form-control" placeholder=(t 'form-placeholder-user-email') required="required"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-biography'}}:</label>
+          {{textarea value=model.user.biography class="form-control" rows="4"}}
+        </div>
+        <div class="form-group">
+          <label>{{t 'form-user-language'}}:</label>
+          {{#power-select
+            options=settings.data.locales
+            selected=model.user.language
+            searchEnabled=false
+            onchange=(action (mut model.user.language) )
+            as |locale|
+          }}
+            {{locale}}
+          {{/power-select}}
+        </div>
+
+        {{input value=model.user.active type="hidden" value=true}}
+
+      </fieldset>
+      <div>
+        <button class="btn btn-primary">
+          <i class="fa fa-save"></i>
+          {{t 'Save'}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

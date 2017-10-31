@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  {{#if record.featuredImage}}
+    {{#link-to-record record=record}}
+      {{we-image record.featuredImage "large" width="100%"}}
+    {{/link-to-record}}
+  {{/if}}
+  <div class="panel-body">
+    {{#link-to-record record=record}}
+      <h2 class="content-name">
+        {{record.name}} {{#unless record.published}} <small><span class="label label-warning">Despublicado</span></small> {{/unless}}
+      </h2>
+    {{/link-to-record}}
+    <p class="content-subname">{{record.about}}</p>
+  </div>
+</div>

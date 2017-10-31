@@ -1,0 +1,73 @@
+<ol class="breadcrumb">
+  <li><a href="/">Início</a></li>
+  <li><a href="/hotel-room">Quartos</a></li>
+  <li class="active">{{we-strip-tags text=data.name maxLength=40}}</li>
+</ol>
+
+<div class="row content-view-record">
+  <div class="col-lg-8">
+    {{#if data.featuredImage}}
+      <!-- Preview Image -->
+      {{we-image data.featuredImage "banner" class="img-responsive"}}
+    {{/if}}
+
+    <!-- Title -->
+    <h1>{{data.name}}
+      {{#can permission='update_hotel-room' roleNames=req.userRoleNames}}
+        <a href="/admin/#/hotel-rooms/{{data.id}}" class="btn btn-default">Editar</a>
+      {{/can}}
+    </h1>
+
+    <!-- Post Content -->
+    <div class="content-body">{{{data.body}}}</div>
+
+    {{#if data.allowComments}}
+      <hr>
+
+      <div class="content-comments">
+        <!-- Blog Comments -->
+        {{{comments modelName="content" modelId=data.id comments=data.metadata.comments count=data.metadata.commentCount locals=this}}}
+      </div>
+    {{/if}}
+
+  </div>
+  <!-- Blog Sidebar Widgets Column -->
+  <div class="col-md-4">
+    {{#if data.tags.length}}
+      <div class="sidebar-module">
+        <div class="panel panel-default">
+          <div class="panel-heading">Tags</div>
+          <div class="panel-body">
+            {{we-terms data.tags vocabularyName="Tags"}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if data.images.length}}
+      <div class="sidebar-module content-image-galery-sidebar">
+        <div class="panel panel-default">
+          <div class="panel-heading">Galeria de imagens</div>
+          <div class="panel-body">
+            {{we-fancybox-galery images=data.images id="postImageGalery" style="large"}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+    {{#if data.attachment.length}}
+      <div class="sidebar-module">
+        <div class="panel panel-default">
+          <div class="panel-heading">Arquivos</div>
+          <div class="panel-body">
+            {{#each data.attachment}}
+              <a href="{{urls.original}}" download><i class="fa fa-download" aria-hidden="true"></i> {{originalname}}</a>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+
+  </div>
+
+</div>

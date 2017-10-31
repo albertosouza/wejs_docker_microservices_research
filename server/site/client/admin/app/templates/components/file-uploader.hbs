@@ -1,0 +1,89 @@
+<table class="table table-bordered">
+  {{#if value}}
+    <thead>
+      <tr>
+        <th>Nome:</th>
+        <th>Descrição:</th>
+        <th>Tipo:</th>
+        <th>Ações:</th>
+      </tr>
+    </thead>
+  {{/if}}
+  <tbody>
+  {{#each value as |file|}}
+    <tr>
+      <td class="file-table-name">
+        {{file.name}}
+      </td>
+      <td class="file-table-description">
+        {{file.description}}
+      </td>
+      <td class="file-table-mime">
+        {{file.mime}}
+      </td>
+      <td class="file-table-actions">
+        <button class="btn btn-sm btn-default" {{action 'removeFile' file}}>
+          <i class="glyphicon glyphicon-remove text-danger"></i> {{t 'file.remove'}}
+        </button>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+  {{#if canAddMore}}
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <button class="btn btn-sm btn-default" {{action 'openFileUploader'}}>
+            <i class="glyphicon glyphicon-plus"></i> {{t 'file.Add'}}
+          </button>
+        </td>
+      </tr>
+    </tfoot>
+  {{/if}}
+</table>
+
+{{#bs-modal
+  open=uploadingFile
+  onSubmit=(action "upload")
+  onHidden=(action "onHideUploadModal")
+    as |modal|
+}}
+  {{#modal.header}}
+    <h4 class="modal-title">
+      <i class="glyphicon glyphicon-picture"></i> {{t 'file.selector'}}
+    </h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    {{#if uploader}}
+      {{#if uploader.isUploading}}
+        {{#bs-progress as |p|}}
+          {{p.bar value=percent minValue=0 maxValue=100 roundDigits=percent showLabel=true animate=true type="success" striped=true}}
+        {{/bs-progress}}
+      {{else}}
+        <div class="row">
+          <div class="col-md-12">
+            <label>Descrição do arquivo (opcional):</label>
+            {{textarea value=description class="form-control"}}
+          </div>
+        </div>
+      {{/if}}
+    {{else}}
+      {{file-upload
+        uploader=uploader
+        url=url
+        progress='progress'
+        didUpload='didUpload'
+        didError='didError'
+        selected='selected'
+      }}
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer as |footer|}}
+    {{#bs-button onClick=(action modal.close) type="default"}}
+      {{t 'Cancel'}}
+    {{/bs-button}}
+    {{#bs-button onClick=(action modal.submit) type="primary"}}
+      {{t 'file.Add'}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

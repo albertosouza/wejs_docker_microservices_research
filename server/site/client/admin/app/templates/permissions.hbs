@@ -1,0 +1,35 @@
+<div class="row"><div class="col-md-12">
+
+<h1>{{t 'permission.link'}}</h1>
+
+<table class="table table-bordered permissions-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      {{#each model.roleNames as |role|}}
+        <th>{{role}}</th>
+      {{/each}}
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.permissionNames as |permissionName|}}
+      <tr>
+        <td>{{permissionName}}</td>
+        {{#each model.roleNames as |role|}}
+          <td>
+            {{role-permission-check
+              roleName=role
+              permissionName=permissionName
+              roles=model.data.roles
+              class="btn btn-default"
+              addPermission="addPermission"
+              removePermission="removePermission"
+            }}
+          </td>
+        {{/each}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+</div></div>

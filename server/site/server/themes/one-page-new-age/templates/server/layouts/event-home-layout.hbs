@@ -1,0 +1,72 @@
+<div id="headerwrap">
+  <div class="container">
+    <div class="row centered">
+      <div class="col-md-12">
+        {{{we-image event.banner 'eventBanner' class="img-responsive"}}}
+      </div>
+      <div class="col-md-12">
+        <div id="sysMessagesArea">{{{we-messages}}}</div>
+      </div>
+
+      <div class="col-md-3">
+        <h1 class="event-title">{{event.title}}</h1>
+        <h5 class="event-abbreviation">@{{event.abbreviation}}</h5>
+        <p>
+          <strong>{{t 'form-event-about-location'}}</strong><br>
+          {{event.location}}
+        </p>
+        <p class="home-event-date">
+          {{#with event}}
+            <strong>{{t 'event.dates'}}:</strong> <br>
+            {{we-cf-date-range start=eventStartDate end=eventEndDate __=../__}}
+          {{/with}}
+        </p>
+        {{#if event.vacancies}}
+          <strong>Vagas:</strong> {{event.vacancies}}</h5>
+        {{/if}}
+
+        <p>
+          {{#with event}}
+            {{#if callForPapersStartDate}}
+              <strong>{{t 'event.callForPapersDates'}}:</strong> {{we-cf-date-range start=callForPapersStartDate end=callForPapersEndDate __=../__}}
+              <br>
+            {{/if}}
+            <strong>{{t 'event.registrationDates'}}:</strong>  {{we-cf-date-range start=registrationStartDate end=registrationEndDate __=../__}}
+          {{/with}}
+        </p>
+        <h5>
+          {{#with event}}
+            {{{template 'event/event-status-label'}}}
+          {{/with}}
+        </h5>
+        <p>
+          {{we-cf-registration-btn class="btn btn-block btn-lg" event=event locals=this userCfregistration=userCfregistration}}
+        </p>
+
+        <p class="event-dates">
+        {{#with data}}
+          {{#if callForPapersStartDate}}
+            <strong>{{t 'event.callForPapersDates'}}:</strong> {{we-cf-date-range start=callForPapersStartDate end=callForPapersEndDate __=../__}}
+            <br>
+          {{/if}}
+          <strong>{{t 'event.registrationDates'}}:</strong>  {{we-cf-date-range start=registrationStartDate end=registrationEndDate __=../__}}
+          <br>
+          <strong>{{t 'event.dates'}}:</strong> {{we-cf-date-range start=eventStartDate end=eventEndDate __=../__}}
+        {{/with}}
+        </p>
+        <p class="event-contact">
+          <strong>{{t 'form-event-about-email'}}</strong>: {{data.email}}
+          <br>
+          <strong>{{t "form-event-about-registrationManagerName"}}</strong>: {{data.registrationManagerName}}
+          <br>
+          <strong>{{t 'form-event-about-registrationManagerEmail'}}</strong>: {{data.registrationManagerEmail}}
+        </p>
+
+
+      </div>
+      <div class="col-md-9">
+        {{{body}}}
+      </div>
+    </div>
+  </div>
+</div>

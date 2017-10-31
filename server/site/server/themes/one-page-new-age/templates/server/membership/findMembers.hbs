@@ -1,0 +1,61 @@
+<table class="table">
+
+<tbody>
+  {{#each data}}
+    <tr class="group-member-teaser">
+      <td>
+        {{#link-to 'user.findOne' user.id}}
+          <span class="member-avatar">{{we-avatar id=userId style='medium'}}</span>
+          <span class="member-username">{{user.username}}</span><br>
+          <span class="member-name">{{user.displayName}}</span>
+        {{/link-to}}
+      </td>
+      <td>
+        {{#each roles}} {{this}} <br>{{/each}}
+      </td>
+      <td>
+        <div class="actions">
+          <div>
+            {{#ifCond user.id ../req.user.id}}{{else}}
+              {{{flag-follow
+                modelName='user'
+                modelId=user.id
+                isFollowing=user.follow
+                locals=..
+              }}}
+            {{/ifCond}}
+          </div>
+          {{#can permission='manage_group' roleNames=../req.userRoleNames}}
+            <div>
+              {{#we-contains roles 'manager'}}
+                <form action="/group/{{groupId}}/member/{{userId}}/removeRole" method="post">
+                  <input type="hidden" name="redirectTo" value="{{../req.url}}">
+                  <input type="hidden" name="role" value="manager">
+                  <button class="btn btn-sm btn-danger">{{t 'group.member.remove.manager.role'}}</button>
+                </form>
+              {{else}}
+                <form action="/group/{{groupId}}/member/{{userId}}/addRole" method="post">
+                    <input type="hidden" name="redirectTo" value="{{../req.url}}">
+                  <input type="hidden" name="role" value="manager">
+                  <button class="btn btn-sm btn-success">{{t 'group.member.add.manager.role'}}</button>
+                </form>
+              {{/we-contains}}
+            </div>
+          {{/can}}
+        </div>
+      </td>
+    </tr>
+  {{else}}
+    <tr>
+      <td>
+        <div class="jumbotron text-center">
+          {{t 'group.member.empty'}}
+        </div>
+      </td>
+    </tr>
+  {{/each}}
+</tbody>
+</table>
+<div>
+  {{paginate count=metadata.count limit=query.limit currentPage=query.page req=req}}
+</div>

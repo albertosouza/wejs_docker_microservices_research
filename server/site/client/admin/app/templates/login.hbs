@@ -1,0 +1,44 @@
+<br>
+<div class="row"><div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+  {{#if model.isLoading}}
+    {{bootstrap-loading}}
+  {{else}}
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1 class="panel-title">{{t 'Login'}}</h1>
+      </div>
+      <div class="panel-body">
+        <form class="form" {{action 'authenticate' on='submit'}}>
+
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <label for="inputEmail" class="input-group-addon">{{t 'form-login-email'}}</label>
+              {{input id='identification' type="email" placeholder=(t "form-placeholder-login-email") value=identification required="required" autofocus="true" class="form-control"}}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group input-group-lg">
+              <label for="inputPassword" class="input-group-addon"> {{t 'form-login-password'}} </label>
+              {{input id='password' placeholder=(t "form-placeholder-login-password") type='password' value=password required="required" class="form-control"}}
+            </div>
+          </div>
+          {{!--
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div> --}}
+          <button class="btn btn-lg btn-primary" type="submit">{{t 'form-login-submit'}}</button>
+        </form>
+      </div>
+      <div class="panel-footer text-right">
+        <div class="login-form-links">
+          {{#link-to 'forgot-password'}}
+            Recuperar senha
+          {{/link-to}}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</div></div>

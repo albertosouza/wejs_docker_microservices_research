@@ -1,0 +1,11 @@
+<h1 class="page-header">Mensagens de contato</h1>
+
+{{conteudos-table
+  data=model.records
+  columns=model.columns
+  pageSize=25
+  useFilteringByColumns=false
+  changeStatus='changeStatus'
+  deleteRecord='deleteRecord'
+  changePublishedStatus='changePublishedStatus'
+}}
